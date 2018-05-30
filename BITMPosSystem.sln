@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BITMPosSystem", "BITMPosSystem\BITMPosSystem.csproj", "{F38CEF23-55BF-4307-8B80-27BACA9B5CD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitmPosSystem.BLL", "BitmPosSystem.BLL\BitmPosSystem.BLL.csproj", "{47868A15-2A60-42F9-9D7A-6FD57B88DA99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitmPosSystem.DAL", "BitmPosSystem.DAL\BitmPosSystem.DAL.csproj", "{08061F3E-A491-4F0B-A026-0074C3754367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitmPosSystem.Models", "BitmPosSystem.Models\BitmPosSystem.Models.csproj", "{BA8B7CE6-5E2E-4C2D-8C51-02790C73BE63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F38CEF23-55BF-4307-8B80-27BACA9B5CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F38CEF23-55BF-4307-8B80-27BACA9B5CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F38CEF23-55BF-4307-8B80-27BACA9B5CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F38CEF23-55BF-4307-8B80-27BACA9B5CD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47868A15-2A60-42F9-9D7A-6FD57B88DA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47868A15-2A60-42F9-9D7A-6FD57B88DA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47868A15-2A60-42F9-9D7A-6FD57B88DA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47868A15-2A60-42F9-9D7A-6FD57B88DA99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08061F3E-A491-4F0B-A026-0074C3754367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08061F3E-A491-4F0B-A026-0074C3754367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08061F3E-A491-4F0B-A026-0074C3754367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08061F3E-A491-4F0B-A026-0074C3754367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA8B7CE6-5E2E-4C2D-8C51-02790C73BE63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8B7CE6-5E2E-4C2D-8C51-02790C73BE63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8B7CE6-5E2E-4C2D-8C51-02790C73BE63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8B7CE6-5E2E-4C2D-8C51-02790C73BE63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
