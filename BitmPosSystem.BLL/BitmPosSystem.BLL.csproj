@@ -54,6 +54,16 @@
     <Compile Include="SalesManager.cs" />
     <Compile Include="SupplierManager.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BitmPosSystem.DAL\BitmPosSystem.DAL.csproj">
+      <Project>{08061f3e-a491-4f0b-a026-0074c3754367}</Project>
+      <Name>BitmPosSystem.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BitmPosSystem.Models\BitmPosSystem.Models.csproj">
+      <Project>{ba8b7ce6-5e2e-4c2d-8c51-02790c73be63}</Project>
+      <Name>BitmPosSystem.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
