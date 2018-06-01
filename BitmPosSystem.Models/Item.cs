@@ -17,8 +17,8 @@ namespace BitmPosSystem.Models
         public Double CostPrice { get; set; }
         public Double SalePrice { get; set; }
         public Category Category { get; set; }
-        public List<Purchase> Purchases { get; set; }
-        public List<Sales> Saleses { get; set; }
+        public List<PurchaseDetails> Purchases { get; set; }
+        public List<SalesDetails> Saleses { get; set; }
 
     }
 }

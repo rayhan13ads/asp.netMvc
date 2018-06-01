@@ -9,8 +9,6 @@ namespace BitmPosSystem.Models
    public class Sales
     {
         public int Id { get; set; }
-        public int ItemId { get; set; }
-        public int Qty { get; set; }
         public double Vat { get; set; }
         public double Discount { get; set; }
         public double SubTotal { get; set; }
@@ -19,7 +17,7 @@ namespace BitmPosSystem.Models
         public DateTime SaleDate { get; set; }
         public int BranchId { get; set; }
         public int CustomerId { get; set; }
-        public Item Item { get; set; }
+        public ICollection<SalesDetails> SalesDetailses { get; set; }
         public Branch Branch { get; set; }
         public Customer Customer { get; set; }
         public List<Income> Incomes { get; set; }
