@@ -72,10 +72,9 @@
     <Compile Include="Sales.cs" />
     <Compile Include="SalesDetails.cs" />
     <Compile Include="Supplier.cs" />
+    <Compile Include="ViewModels\CategoryVM.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
