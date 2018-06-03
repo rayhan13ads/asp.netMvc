@@ -59,7 +59,7 @@ namespace BitmPosSystem.BLL
         //get id
         public Category GetByid(int id)
         {
-            return repository.GetByid(id);
+            return repository.GetById(id);
         }
         // Search code
         public List<Category> GetSearchCode(Category objCategory)
