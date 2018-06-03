@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using  BitmPosSystem.DAL;
 using BitmPosSystem.Models;
 namespace BitmPosSystem.BLL
@@ -17,10 +18,10 @@ namespace BitmPosSystem.BLL
         }
 
         //Add Data
-        public bool Add(Category objCategory)
+        public bool Add(Category objCategory, HttpPostedFileBase file)
         {
             var isAdded = false;
-            isAdded = repository.Add(objCategory);
+            isAdded = repository.Add(objCategory,file);
             if (isAdded)
             {
                 return true;
@@ -72,6 +73,11 @@ namespace BitmPosSystem.BLL
         {
             return repository.GetSearchName(objCategory);
 
+        }
+
+        public List<Category> GetAllRoot()
+        {
+            return repository.GetAllRoot();
         }
     }
 }

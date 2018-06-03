@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using BitmPosSystem.Models;
 using BitmPosSystem.Models.Context;
 namespace BitmPosSystem.DAL
@@ -17,10 +19,22 @@ namespace BitmPosSystem.DAL
             return _Db.Categories.ToList();
         }
 
+        public List<Category> GetAllRoot()
+        {
+            //var query =
+            //    from a in _Db.Categories
+            //    from B in _Db.Categories
+            //    where B.RootCategoryId == a.Id
+            //    select B.RootCategoryId;
+            return _Db.Categories.Where(s => s.RootCategoryId == null).ToList();
+
+        }
+
         //Add Data
-        public bool Add(Category objCategory)
+        public bool Add(Category objCategory, HttpPostedFileBase file)
         {
             var isAdded = false;
+            objCategory.Image = ConvertToBytes(file);
             _Db.Categories.Add(objCategory);
             isAdded = _Db.SaveChanges() > 0;
             if (isAdded)
@@ -79,6 +93,13 @@ namespace BitmPosSystem.DAL
         {
            return _Db.Categories.Where(c => c.Name.Contains(objCategory.Name)).ToList();
 
+        }
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
         }
     }
 }

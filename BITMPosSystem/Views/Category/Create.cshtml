@@ -5,46 +5,88 @@
 <h1 class="text-center">Item <small class="text-muted">Category</small></h1>
 <h2>Create</h2>
 <div class="container">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Create","Category",null,FormMethod.Post,new { enctype = "multipart/form-data" }))
     {
-        @Html.LabelFor(m => m.Name, "Category Name: ", new {@class = "form-control"})
-        @Html.TextBoxFor(m => m.Name, null, new {@class = "form-control"})
-        @Html.ValidationMessageFor(m=>m.Name, null,new {@class="text-danger"})
+        <div class="row form-group">
+            <div class="col-md-6"></div>
+            <div class="col-md-2">
 
-        @Html.LabelFor(m=>m.CateogryCode,"Category Code :", new {@class="form-control"})
-        @Html.TextBoxFor(m =>m.CateogryCode,null,  new {@class = "form-control"})
-        @Html.ValidationMessageFor(m=>m.CateogryCode, null,new {@class="text-danger"})
+                <input type="checkbox" class="form-check-input" id="RootChecked">
+                <label class="form-check-label" for="RootChecked">Root Category</label>
+            </div>
+            <div class="col-md-2">
+                <input type="checkbox" class="form-check-input" id="ChildChecked">
+                <label class="form-check-label" for="ChildChecked">Child Category</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.RootCategoryId,"Chalid Category",new { @class="control-label col-md-4"})
+            <div class="col-md-8">
+                @Html.DropDownListFor(m => m.RootCategoryId,Model.SelectListRootCategoryItems,new {@class="form-control col-md-4"})
+                @Html.ValidationMessageFor(m => m.RootCategoryId, null, new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.Name, "Category Name: ", new {@class = "control-label  col-md-4"})
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.Name, null, new {@class = "form-control"})
+                @Html.ValidationMessageFor(m => m.Name, null, new {@class = "text-danger"})
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            @Html.LabelFor(m=>m.CateogryCode,"Category Code :", new {@class="control-label  col-md-4"})
+            <div class="col-md-8">
+                @Html.TextBoxFor(m =>m.CateogryCode,null,  new {@class = "form-control"})
+                @Html.ValidationMessageFor(m=>m.CateogryCode, null,new {@class="text-danger"})
+            </div>
+        </div>
 
-        @Html.LabelFor(m=>m.Description,"Description :", new {@class="form-control"})
-        @Html.TextAreaFor(m => m.Description, new {@class="form-control"})
-        @Html.ValidationMessageFor(m=>m.Description, null,new {@class="text-danger"})
-        <div class="panel panel-body" style="min-height:256px">
-        
-            <div class="col-md-9">
+        <div class="form-group row">
+            @Html.LabelFor(m=>m.Description,"Description :", new {@class="control-label col-md-4"})
+            <div class="col-md-8">
+                
+                @Html.TextAreaFor(m => m.Description, new {@class="form-control"})
+                @Html.ValidationMessageFor(m=>m.Description, null,new {@class="text-danger"})
+            </div>
+        </div>
+                <div class="form-group row">
+                 @Html.LabelFor(m => m.Image, new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                <div class="panel panel-body" style="min-height:256px">
 
-                <div class="col-md-4">
-                    <div class="btn btn-primary">
-                        <input type="file" id="imageBrowes" />
-                    </div>
-                    <hr />
+                    <div class="col-md-9">
 
-                    <div id="imgPreview" class="thumbnail" style="display:none">
-                        <img class="img-responsive" id="targetImg" />
-                        <div class="caption">
-                            <a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-                            <span id="description"></span>
+                        <div class="col-md-4">
+                            <div class="btn btn-primary">
+                                <input type="file" name="imageBrowes" id="imageBrowes" onchange="fileCheck(file)" />
+                                @Html.ValidationMessageFor(m => m.Image)
+                            </div>
+                            <hr />
+
+                            <div id="imgPreview" class="thumbnail" style="display:none">
+                                <img class="img-responsive" id="targetImg" />
+                                <div class="caption">
+                                    <a href="#" onclick="ClearPreview()"><i class="oi oi-trash"></i></a>
+                                    <span id="description"></span>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
 
                 </div>
-
             </div>
-
         </div>
-        <input type="submit" class="btn btn-success" value="Save"/>
+       
+        <input type="submit" class="btn btn-success float-right" value="Save"/>
         
     }
+    
+    <br/>
 </div>
+
 <script src="~/scripts/jquery-3.0.0.min.js"></script>
 <script>
 
@@ -96,5 +138,30 @@
         $("#imgPreview").hide();
 
     }
-
+    function fileCheck(obj) {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+        if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+        }
+    }
+    $(function () {
+        $("#ChildChecked").click(function () {
+            if ($(this).is(':checked')) {
+                $("#RootCategoryId").show();
+            }
+            //else {
+            //    $("#RootCategoryId").hide();
+            //}
+        });
+    });
+    $(function () {
+        $("#RootChecked").click(function () {
+            if ($(this).is(':checked')) {
+                $("#RootCategoryId").hide();
+            }
+            //else {
+            //    $("#RootCategoryId").hide();
+            //}
+        });
+    });
 </script>
