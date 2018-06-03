@@ -63,7 +63,7 @@ namespace BitmPosSystem.DAL
         public bool Delete(int id)
         {
             var isDelete = false;
-           var removeData = _Db.Categories.SingleOrDefault(c => c.Id == id);
+            var removeData = _Db.Categories.SingleOrDefault(c => c.Id == id);
             if (removeData != null)
             {
                 _Db.Categories.Remove(removeData);
@@ -78,7 +78,7 @@ namespace BitmPosSystem.DAL
 
         }
         //get id
-        public Category GetByid(int id)
+        public Category GetById(int id)
         {
             return _Db.Categories.SingleOrDefault(c => c.Id == id);
         }

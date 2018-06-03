@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+using System.ComponentModel;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 using BitmPosSystem.Models;
@@ -9,22 +10,22 @@ using BitmPosSystem.Models.Context;
 
 namespace BitmPosSystem.DAL
 {
-    public class OrganizationRepository
+    public class BranchRepository
     {
         PosSystemContext _Db = new PosSystemContext();
 
         //Get all informaton form Branch Tabel
 
-        public List<Organisetion> GetAll()
+        public List<Branch> GetAll()
         {
-            return _Db.Organisetions.ToList();
+            return _Db.Branches.ToList();
         }
 
         //Add Data
-        public bool Add(Organisetion objOrganisetion)
+        public bool Add(Branch objBranch)
         {
             var isAdded = false;
-            _Db.Organisetions.Add(objOrganisetion);
+            _Db.Branches.Add(objBranch);
             isAdded = _Db.SaveChanges() > 0;
             if (isAdded)
             {
@@ -32,14 +33,14 @@ namespace BitmPosSystem.DAL
             }
             return isAdded;
         }
-
+        
 
         //Update Data 
 
-        public bool Update(Organisetion objOrganisetion)
+        public bool Update(Branch objBranch)
         {
-            _Db.Organisetions.Attach(objOrganisetion);
-            _Db.Entry(objOrganisetion).State = EntityState.Modified;
+            _Db.Branches.Attach(objBranch);
+            _Db.Entry(objBranch).State = EntityState.Modified;
             var isUpdate = _Db.SaveChanges() > 0;
             if (isUpdate)
             {
@@ -52,10 +53,10 @@ namespace BitmPosSystem.DAL
         public bool Delete(int Id)
         {
             var isDelete = false;
-            var removeData = _Db.Organisetions.SingleOrDefault(c => c.Id == Id);
+            var removeData = _Db.Branches.SingleOrDefault(c => c.Id == Id);
             if (removeData != null)
             {
-                _Db.Organisetions.Remove(removeData);
+                _Db.Branches.Remove(removeData);
                 isDelete = _Db.SaveChanges() > 0;
                 if (isDelete)
                 {
@@ -67,21 +68,21 @@ namespace BitmPosSystem.DAL
 
         //GetById 
 
-        public Organisetion GetById(int id)
+        public Branch GetById(int id)
         {
-            return _Db.Organisetions.SingleOrDefault(s => s.Id == id);
+            return _Db.Branches.SingleOrDefault(s => s.Id == id);
         }
 
         //Search by Code
-        public List<Organisetion> GetSearchCode(Organisetion objOrganisetion)
+        public List<Branch> GetSearchCode(Branch objBranch)
         {
-            return _Db.Organisetions.Where(c => c.OrganisetionCode.Contains(objOrganisetion.OrganisetionCode)).ToList();
+            return _Db.Branches.Where(c => c.BranchCode.Contains(objBranch.BranchCode)).ToList();
         }
 
         //Search by Name
-        public List<Organisetion> GetSearchName(Organisetion objOrganisetion)
+        public List<Branch> GetSearchName(Branch objBranch)
         {
-            return _Db.Organisetions.Where(c => c.OrganisetionName.Contains(objOrganisetion.OrganisetionName)).ToList();
+            return _Db.Branches.Where(c => c.BranchName.Contains(objBranch.BranchName)).ToList();
 
         }
     }

@@ -9,22 +9,22 @@ using BitmPosSystem.Models.Context;
 
 namespace BitmPosSystem.DAL
 {
-    public class OrganizationRepository
+    public class SupplierRepository
     {
         PosSystemContext _Db = new PosSystemContext();
 
-        //Get all informaton form Branch Tabel
+        //Get all informaton form Customers Tabel
 
-        public List<Organisetion> GetAll()
+        public List<Supplier> GetAll()
         {
-            return _Db.Organisetions.ToList();
+            return _Db.Suppliers.ToList();
         }
 
         //Add Data
-        public bool Add(Organisetion objOrganisetion)
+        public bool Add(Supplier objeSupplier)
         {
             var isAdded = false;
-            _Db.Organisetions.Add(objOrganisetion);
+            _Db.Suppliers.Add(objeSupplier);
             isAdded = _Db.SaveChanges() > 0;
             if (isAdded)
             {
@@ -36,10 +36,10 @@ namespace BitmPosSystem.DAL
 
         //Update Data 
 
-        public bool Update(Organisetion objOrganisetion)
+        public bool Update(Supplier objSupplier)
         {
-            _Db.Organisetions.Attach(objOrganisetion);
-            _Db.Entry(objOrganisetion).State = EntityState.Modified;
+            _Db.Suppliers.Attach(objSupplier);
+            _Db.Entry(objSupplier).State = EntityState.Modified;
             var isUpdate = _Db.SaveChanges() > 0;
             if (isUpdate)
             {
@@ -52,10 +52,10 @@ namespace BitmPosSystem.DAL
         public bool Delete(int Id)
         {
             var isDelete = false;
-            var removeData = _Db.Organisetions.SingleOrDefault(c => c.Id == Id);
+            var removeData = _Db.Suppliers.SingleOrDefault(c => c.Id == Id);
             if (removeData != null)
             {
-                _Db.Organisetions.Remove(removeData);
+                _Db.Suppliers.Remove(removeData);
                 isDelete = _Db.SaveChanges() > 0;
                 if (isDelete)
                 {
@@ -67,22 +67,21 @@ namespace BitmPosSystem.DAL
 
         //GetById 
 
-        public Organisetion GetById(int id)
+        public Supplier GetById(int id)
         {
-            return _Db.Organisetions.SingleOrDefault(s => s.Id == id);
+            return _Db.Suppliers.SingleOrDefault(c => c.Id == id);
         }
 
         //Search by Code
-        public List<Organisetion> GetSearchCode(Organisetion objOrganisetion)
+        public List<Supplier> GetSearchCode(Supplier objSupplier)
         {
-            return _Db.Organisetions.Where(c => c.OrganisetionCode.Contains(objOrganisetion.OrganisetionCode)).ToList();
+            return _Db.Suppliers.Where(c => c.SupplierCode.Contains(objSupplier.SupplierCode)).ToList();
         }
 
         //Search by Name
-        public List<Organisetion> GetSearchName(Organisetion objOrganisetion)
+        public List<Supplier> GetSearchName(Supplier objEmployee)
         {
-            return _Db.Organisetions.Where(c => c.OrganisetionName.Contains(objOrganisetion.OrganisetionName)).ToList();
-
+            return _Db.Suppliers.Where(c => c.SupplierName.Contains(objEmployee.SupplierName)).ToList();
         }
     }
 }
