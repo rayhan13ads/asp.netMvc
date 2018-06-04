@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
-using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BitmPosSystem.Models;
@@ -15,7 +15,8 @@ namespace BITMPosSystem.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            return View();
+           
+            return View(_manager.GetAll());
         }
 
         [HttpGet]
@@ -45,7 +46,7 @@ namespace BITMPosSystem.Controllers
                     {
                         ViewBag.Meg = "Sucessful";
                        //return RedirectToAction("Index");
-
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -61,6 +62,78 @@ namespace BITMPosSystem.Controllers
             }
            
             return View(obj);
+        }
+
+       
+        public ActionResult Edit(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Category model = _manager.GetByid(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(Category objCategory)
+        {
+            if (ModelState.IsValid)
+            {
+                HttpPostedFileBase file = Request.Files["imageBrowes"];
+                var isAdded = _manager.Update(objCategory, file);
+                if (isAdded)
+                {
+                    ViewBag.Meg = "Update Sucessful";
+                }
+                else
+                {
+                    ViewBag.Meg = "Failed";
+                }
+
+            }
+            return RedirectToAction("Index");
+
+        }
+
+        // GET: /Movies/Delete/5
+        public ActionResult Delete(int id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Category model = _manager.GetByid(id);
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Create");
+        }
+
+        // POST: /Movies/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+             var iSDelete = _manager.Delete(id) ;
+
+            if (iSDelete)
+            {
+                ViewBag.Meg = "Delete Sucessful";
+                //return RedirectToAction("Index");
+
+            }
+            else
+            {
+                ViewBag.Meg = "Failed";
+            }
+
+            return RedirectToAction("Index"); ;
         }
     }
 }

@@ -64,16 +64,16 @@ namespace BitmPosSystem.BLL
             return _expenseRepository.GetById(id);
         }
         // Search code
-        public List<Expense> GetSearchCode(Expense objExpense)
-        {
-            return _expenseRepository.GetSearchCode(objExpense);
-        }
+        //public List<Expense> GetSearchCode(Expense objExpense)
+        //{
+        //    return _expenseRepository.GetSearchCode(objExpense);
+        //}
 
-        //search data
-        public List<Expense> GetSearchName(Expense objExpense)
-        {
-            return _expenseRepository.GetSearchName(objExpense);
+        ////search data
+        //public List<Expense> GetSearchName(Expense objExpense)
+        //{
+        //    return _expenseRepository.GetSearchName(objExpense);
 
-        }
+        //}
     }
 }

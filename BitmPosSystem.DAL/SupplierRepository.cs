@@ -73,15 +73,15 @@ namespace BitmPosSystem.DAL
         }
 
         //Search by Code
-        public List<Supplier> GetSearchCode(Supplier objSupplier)
-        {
-            return _Db.Suppliers.Where(c => c.SupplierCode.Contains(objSupplier.SupplierCode)).ToList();
-        }
+        //public List<Supplier> GetSearchCode(Supplier objSupplier)
+        //{
+        //    return _Db.Suppliers.Where(c => c.SupplierCode.Contains(objSupplier.SupplierCode)).ToList();
+        //}
 
-        //Search by Name
-        public List<Supplier> GetSearchName(Supplier objEmployee)
-        {
-            return _Db.Suppliers.Where(c => c.SupplierName.Contains(objEmployee.SupplierName)).ToList();
-        }
+        ////Search by Name
+        //public List<Supplier> GetSearchName(Supplier objEmployee)
+        //{
+        //    return _Db.Suppliers.Where(c => c.SupplierName.Contains(objEmployee.SupplierName)).ToList();
+        //}
     }
 }

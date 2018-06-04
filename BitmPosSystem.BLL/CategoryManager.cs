@@ -31,10 +31,10 @@ namespace BitmPosSystem.BLL
         }
         //update data
 
-        public bool Update(Category objCategory)
+        public bool Update(Category objCategory, HttpPostedFileBase file)
         {
 
-            var isUpdate = repository.Update(objCategory);
+            var isUpdate = repository.Update(objCategory,file);
             if (isUpdate)
             {
                 return true;

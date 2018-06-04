@@ -1,0 +1,34 @@
+﻿@*@model BitmPosSystem.Models.Category*@
+@model List<BitmPosSystem.Models.Category>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category</th>
+            <th scope="col">Code</th>
+            <th scope="col">Description</th>
+            <th scope="col">Child Category</th>
+            <th scope="col">Image</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var Item in Model)
+        {
+            <tr>
+                <th scope="row">@Item.Id</th>
+                <td>@Item.Name</td>
+                <td>@Item.CateogryCode</td>
+                <td>@Item.Description</td>
+                <td>@Item.RootCategory.Name</td>
+                <td><img src="~/@Item.Image"/></td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = Item.Id}) | @Html.ActionLink("Delete", "Delete", new { id = Item.Id }) </td>
+                
+            </tr>
+        }
+        </tbody>
+    </table>
+}

@@ -73,16 +73,16 @@ namespace BitmPosSystem.DAL
         }
 
         //Search by Code
-        public List<ExpenseCategory> GetSearchCode(ExpenseCategory objExpenseCategory)
-        {
-            return _Db.ExpenseCategories.Where(c => c.ExpenseCategoryCode.Contains(objExpenseCategory.ExpenseCategoryCode)).ToList();
-        }
+        //public List<ExpenseCategory> GetSearchCode(ExpenseCategory objExpenseCategory)
+        //{
+        //    return _Db.ExpenseCategories.Where(c => c.ExpenseCategoryCode.Contains(objExpenseCategory.ExpenseCategoryCode)).ToList();
+        //}
 
-        //Search by Name
-        public List<ExpenseCategory> GetSearchName(ExpenseCategory objExpenseCategory)
-        {
-            return _Db.ExpenseCategories.Where(c => c.ExpenseCategoryName.Contains(objExpenseCategory.ExpenseCategoryName)).ToList();
+        ////Search by Name
+        //public List<ExpenseCategory> GetSearchName(ExpenseCategory objExpenseCategory)
+        //{
+        //    return _Db.ExpenseCategories.Where(c => c.ExpenseCategoryName.Contains(objExpenseCategory.ExpenseCategoryName)).ToList();
 
-        }
+        //}
     }
 }

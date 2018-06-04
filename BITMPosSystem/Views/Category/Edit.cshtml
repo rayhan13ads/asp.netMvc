@@ -1,14 +1,18 @@
 ﻿@model BitmPosSystem.Models.Category
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
+
+
+
+
 <h1 class="text-center">Item <small class="text-muted">Category</small></h1>
-<h2>Create</h2>
+<h2>Edit</h2>
 <div class="container">
     @using (Html.BeginForm("Create", "Category", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        @Html.AntiForgeryToken() 
-        @Html.HiddenFor(m=>m.Id)
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
         <div class="row form-group">
             <div class="col-md-6"></div>
             <div class="col-md-2">

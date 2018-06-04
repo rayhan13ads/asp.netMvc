@@ -63,16 +63,16 @@ namespace BitmPosSystem.BLL
             return _salesRepository.GetById(id);
         }
         // Search code
-        public List<Sales> GetSearchCode(Sales objSales)
-        {
-            return _salesRepository.GetSearchCode(objSales);
-        }
+        //public List<Sales> GetSearchCode(Sales objSales)
+        //{
+        //    return _salesRepository.GetSearchCode(objSales);
+        //}
 
-        //search data
-        public List<Sales> GetSearchName(Sales objSales)
-        {
-            return _salesRepository.GetSearchName(objSales);
+        ////search data
+        //public List<Sales> GetSearchName(Sales objSales)
+        //{
+        //    return _salesRepository.GetSearchName(objSales);
 
-        }
+        //}
     }
 }

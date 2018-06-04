@@ -46,8 +46,9 @@ namespace BitmPosSystem.DAL
         }
         //update data
 
-        public bool Update(Category objCategory)
+        public bool Update(Category objCategory, HttpPostedFileBase file)
         {
+            objCategory.Image = ConvertToBytes(file);
             _Db.Categories.Attach(objCategory);
             _Db.Entry(objCategory).State = EntityState.Modified;
             var isUpdate =_Db.SaveChanges() > 0;
@@ -63,7 +64,7 @@ namespace BitmPosSystem.DAL
         public bool Delete(int id)
         {
             var isDelete = false;
-            var removeData = _Db.Categories.SingleOrDefault(c => c.Id == id);
+            var removeData = _Db.Categories.Find();
             if (removeData != null)
             {
                 _Db.Categories.Remove(removeData);
@@ -80,7 +81,7 @@ namespace BitmPosSystem.DAL
         //get id
         public Category GetById(int id)
         {
-            return _Db.Categories.SingleOrDefault(c => c.Id == id);
+            return _Db.Categories.Find(id);
         }
         // Search code
         public List<Category> GetSearchCode(Category objCategory)
