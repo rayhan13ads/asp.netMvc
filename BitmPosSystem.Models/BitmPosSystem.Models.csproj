@@ -110,7 +110,7 @@
     <Compile Include="Sales.cs" />
     <Compile Include="SalesDetails.cs" />
     <Compile Include="Supplier.cs" />
-    <Compile Include="ViewModels\CategoryVM.cs" />
+    <Compile Include="ViewModels\ItemsVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
