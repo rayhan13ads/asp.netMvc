@@ -24,7 +24,7 @@
         <div class="form-group row">
             @Html.LabelFor(m => m.RootCategoryId, "Chalid Category", new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.DropDownListFor(m => m.RootCategoryId, Model.SelectListRootCategoryItems, new { @class = "form-control col-md-4" })
+                @Html.DropDownListFor(m => m.RootCategoryId,Model.SelectListRootCategoryItems, new { @class = "form-control col-md-4" })
                 @Html.ValidationMessageFor(m => m.RootCategoryId, null, new { @class = "text-danger" })
             </div>
         </div>
@@ -67,7 +67,7 @@
                             <hr />
 
                             <div id="imgPreview" class="thumbnail" style="display:none">
-                                <img class="img-responsive" id="targetImg" />
+                                <img class="img-responsive" id="targetImg" height="200" width="200" />
                                 <div class="caption">
                                     <a href="#" onclick="ClearPreview()"><i class="oi oi-trash"></i></a>
                                     <span id="description"></span>

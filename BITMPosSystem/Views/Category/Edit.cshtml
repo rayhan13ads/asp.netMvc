@@ -9,7 +9,7 @@
 <h1 class="text-center">Item <small class="text-muted">Category</small></h1>
 <h2>Edit</h2>
 <div class="container">
-    @using (Html.BeginForm("Create", "Category", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "Category", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.Id)
@@ -28,7 +28,7 @@
         <div class="form-group row">
             @Html.LabelFor(m => m.RootCategoryId, "Chalid Category", new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.DropDownListFor(m => m.RootCategoryId, Model.SelectListRootCategoryItems, new { @class = "form-control col-md-4" })
+                @Html.DropDownListFor(m => m.RootCategoryId,ViewData["CategoryRootId"] as IEnumerable<SelectListItem>, new { @class = "form-control col-md-4" })
                 @Html.ValidationMessageFor(m => m.RootCategoryId, null, new { @class = "text-danger" })
             </div>
         </div>

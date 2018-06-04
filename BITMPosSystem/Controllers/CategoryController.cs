@@ -22,14 +22,15 @@ namespace BITMPosSystem.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-             
+            int a = 1;
             var rootCategory = _manager.GetAllRoot();
             var model = new Category();
+            model.CateogryCode = "CAT000" + (_manager.Code()+a).ToString();
             var dropDown = new List<SelectListItem>();
             dropDown.AddRange(rootCategory.Select(c =>
-                new SelectListItem() { Value = c.RootCategoryId.ToString(), Text = c.Name }));
+                new SelectListItem() { Value = c.Id.ToString(), Text = c.Name }));
+            //ViewData["CategoryRootId"] = dropDown; 
             model.SelectListRootCategoryItems = dropDown;
-
             return View(model);
         }
 
@@ -64,7 +65,7 @@ namespace BITMPosSystem.Controllers
             return View(obj);
         }
 
-       
+       [HttpGet]
         public ActionResult Edit(int id)
         {
             if (id == null)
@@ -73,6 +74,11 @@ namespace BITMPosSystem.Controllers
             }
 
             Category model = _manager.GetByid(id);
+            var rootCategory = _manager.GetAllRoot();
+            var dropDown = new List<SelectListItem>();
+            dropDown.AddRange(rootCategory.Select(c =>
+                new SelectListItem() { Value = c.RootCategoryId.ToString(), Text = c.Name }));
+            ViewData["CategoryRootId"] = dropDown;
             if (model == null)
             {
                 return HttpNotFound();
@@ -107,20 +113,25 @@ namespace BITMPosSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var rootCategory = _manager.GetAllRoot();
+            var dropDown = new List<SelectListItem>();
+            dropDown.AddRange(rootCategory.Select(c =>
+                new SelectListItem() { Value = c.RootCategoryId.ToString(), Text = c.Name }));
+            ViewData["CategoryRootId"] = dropDown;
             Category model = _manager.GetByid(id);
             if (model == null)
             {
                 return HttpNotFound();
             }
-            return View("Create");
+            return View(model);
         }
 
         // POST: /Movies/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-             var iSDelete = _manager.Delete(id) ;
+           
+            var iSDelete = _manager.Delete(id) ;
 
             if (iSDelete)
             {

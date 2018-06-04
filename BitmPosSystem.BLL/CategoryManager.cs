@@ -79,5 +79,10 @@ namespace BitmPosSystem.BLL
         {
             return repository.GetAllRoot();
         }
+
+        public int Code()
+        {
+            return repository.Code();
+        }
     }
 }

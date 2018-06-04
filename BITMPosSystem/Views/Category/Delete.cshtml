@@ -1,0 +1,52 @@
+﻿@model BitmPosSystem.Models.Category
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+@using (Html.BeginForm("Delete", "Category", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m=>m.RootCategoryId)
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    @if (Model.RootCategoryId != null)
+                    {
+                        <div class="col-md-2">Root Category :</div>
+                        <div class="col-md-8">@Html.DisplayFor(m => m.RootCategory.Name)</div>
+                    }
+                   
+                </div>
+                <div class="row">
+                    <div class="col-md-2">Category Name :</div>
+                    <div class="col-md-8">@Html.DisplayFor(m=>m.Name)</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">Category Code :</div>
+                    <div class="col-md-8">@Html.DisplayFor(m => m.CateogryCode)</div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-2">Image :</div>
+                    <div class="col-md-8">
+                        @{
+                            if (Model.Image != null)
+                            {
+                                var base64 = Convert.ToBase64String(Model.Image);
+                                var imgSrc = String.Format("Data:Image/jpg;base64,{0}", base64);
+                                <img src="@imgSrc" height="200px" width="200px"/>
+                            }
+                           
+                        }
+                    </div>
+                </div>
+                <br/>
+                <input type="submit" class="btn btn-danger" value="Delete"/>
+                <a class="btn btn-light" href="@Url.Action("Index","Category")" type="submit" value="Delete">Cancle</a>
+            </div>
+        </div>
+
+    </div>
+}

@@ -64,7 +64,7 @@ namespace BitmPosSystem.DAL
         public bool Delete(int id)
         {
             var isDelete = false;
-            var removeData = _Db.Categories.Find();
+            var removeData = _Db.Categories.Find(id);
             if (removeData != null)
             {
                 _Db.Categories.Remove(removeData);
@@ -90,6 +90,11 @@ namespace BitmPosSystem.DAL
         }
 
         //search data
+        public int Code()
+        {
+            return _Db.Categories.Count();
+        }
+
         public List<Category> GetSearchName(Category objCategory)
         {
            return _Db.Categories.Where(c => c.Name.Contains(objCategory.Name)).ToList();
