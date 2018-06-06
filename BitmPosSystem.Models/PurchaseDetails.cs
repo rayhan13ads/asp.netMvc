@@ -13,6 +13,6 @@ namespace BitmPosSystem.Models
         public double CostPrice { get; set; }
         public int ItemId { get; set; }
         public Item Item { get; set; }
-        public Purchase Purchase { get; set; }
+        public virtual Purchase Purchase { get; set; }
     }
 }

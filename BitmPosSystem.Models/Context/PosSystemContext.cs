@@ -24,7 +24,7 @@ namespace BitmPosSystem.Models.Context
         public DbSet<PurchaseDetails> PurchaseDetailses { get; set; }
         public DbSet<Sales> Saleses { get; set; }
         public DbSet<SalesDetails> SalesDetailses { get; set; }
-        public DbSet<Organisetion> Organisetions { get; set; }
+        public DbSet<Organization> Organisetions { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Income> Incomes { get; set; }

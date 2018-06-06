@@ -24,7 +24,7 @@ namespace BitmPosSystem.Models.ViewModels
         public Branch Branch { get; set; }
      
         public Supplier Supplier { get; set; }
-        public ICollection<Organisetion> Organisetions { get; set; }
+        public ICollection<Organization> Organisetions { get; set; }
         public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<Branch> Branches { get; set; }
         public List<SelectListItem>  ItemsDrop { get; set; }

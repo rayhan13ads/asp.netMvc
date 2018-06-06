@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace BitmPosSystem.Models
 {
-   public class Organisetion
+   public class Organization
     {
         public int Id { get; set; }
-        public string OrganisetionName { get; set; }
-        public string OrganisetionCode { get; set; }
+        public string OrganizationName { get; set; }
+        public string OrganizationCode { get; set; }
        
         public string ContactNumber { get; set; }
         public string Address { get; set; }

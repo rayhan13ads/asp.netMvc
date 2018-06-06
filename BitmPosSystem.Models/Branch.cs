@@ -20,7 +20,7 @@ namespace BitmPosSystem.Models
         public string Address { get; set; }
         public int OrganisetionId { get; set; }
         [ForeignKey("OrganisetionId")]
-        public Organisetion Organisetion { get; set; }
+        public Organization Organisetion { get; set; }
         public List<Employee> Employees { get; set; }
         [Required]
         [ForeignKey("BranchId")]

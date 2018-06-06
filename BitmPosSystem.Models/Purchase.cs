@@ -17,7 +17,7 @@ namespace BitmPosSystem.Models
         public double PurchaseDue { get; set; }
         public DateTime PurchasseDate { get; set; }
         public string Remark { get; set; }
-        public int OrganisetioId { get; set; }
+        public int OrganizationId { get; set; }
         public int BranchId { get; set; }
         public int SupplierId { get; set; }
         public virtual ICollection<PurchaseDetails> PurchaseDetailses { get; set; }
@@ -28,7 +28,7 @@ namespace BitmPosSystem.Models
         public Supplier Supplier { get; set; }
 
         [ForeignKey("OrganisetioId")]
-        public Organisetion Organisetion { get; set; }
+        public Organization Organisetion { get; set; }
         public List<Income> Incomes { get; set; }
       
     }

@@ -26,7 +26,7 @@ namespace BITMPosSystem.App_Start
                 "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/bootstrap.min.css",
+                "~/Content/bootstrap.css",
                 "~/Content/site.css"));
         }
     }

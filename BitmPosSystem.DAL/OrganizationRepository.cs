@@ -15,13 +15,13 @@ namespace BitmPosSystem.DAL
 
         //Get all informaton form Branch Tabel
 
-        public List<Organisetion> GetAll()
+        public List<Organization> GetAll()
         {
             return _Db.Organisetions.ToList();
         }
 
         //Add Data
-        public bool Add(Organisetion objOrganisetion)
+        public bool Add(Organization objOrganisetion)
         {
             var isAdded = false;
             _Db.Organisetions.Add(objOrganisetion);
@@ -36,7 +36,7 @@ namespace BitmPosSystem.DAL
 
         //Update Data 
 
-        public bool Update(Organisetion objOrganisetion)
+        public bool Update(Organization objOrganisetion)
         {
             _Db.Organisetions.Attach(objOrganisetion);
             _Db.Entry(objOrganisetion).State = EntityState.Modified;
@@ -67,21 +67,21 @@ namespace BitmPosSystem.DAL
 
         //GetById 
 
-        public Organisetion GetById(int id)
+        public Organization GetById(int id)
         {
             return _Db.Organisetions.SingleOrDefault(s => s.Id == id);
         }
 
         //Search by Code
-        public List<Organisetion> GetSearchCode(Organisetion objOrganisetion)
+        public List<Organization> GetSearchCode(Organization objOrganisetion)
         {
-            return _Db.Organisetions.Where(c => c.OrganisetionCode.Contains(objOrganisetion.OrganisetionCode)).ToList();
+            return _Db.Organisetions.Where(c => c.OrganizationCode.Contains(objOrganisetion.OrganizationCode)).ToList();
         }
 
         //Search by Name
-        public List<Organisetion> GetSearchName(Organisetion objOrganisetion)
+        public List<Organization> GetSearchName(Organization objOrganisetion)
         {
-            return _Db.Organisetions.Where(c => c.OrganisetionName.Contains(objOrganisetion.OrganisetionName)).ToList();
+            return _Db.Organisetions.Where(c => c.OrganizationName.Contains(objOrganisetion.OrganizationName)).ToList();
 
         }
     }

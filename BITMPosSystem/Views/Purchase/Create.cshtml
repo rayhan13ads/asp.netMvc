@@ -1,0 +1,190 @@
+﻿@model BitmPosSystem.Models.Purchase
+    
+
+
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title"> Purchase Heading</div>
+                
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class=col-md-6"">
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Organisetion, "Select Organization", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Organisetion, null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Branch, "Select Branch", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Branch, null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="form-group row">
+                            @Html.LabelFor(m => m.Employee, "Select Employee", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Employee, null, new {@class = "form-control"})
+                            </div>
+                        </div>*@
+                        
+
+                    </div>
+                </div>
+                
+                
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.PurchasseDate, "Purchase Date", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.PurchaseDue, null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Supplier, "Select Supplier", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Supplier, null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            @Html.LabelFor(m => m.Remark, "Remark", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBoxFor(m => m.Remark, null, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
+                
+                
+                
+                
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title"> Purchase Body</div>
+            
+            </div>
+            <div class="panel-body">
+                
+
+                <div class="row">
+                    <div class="col-md-12">
+
+
+                        <div class="form-group row">
+                            @Html.Label("ItemName", "Item Name", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBox("ItemName", null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            @Html.Label("ItemQty", "Item Quantity", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBox("ItemQty", null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            @Html.Label("ItemCostPrice", "Item Cost", new {@class = "control-label col-md-4"})
+                            <div class="col-md-4">
+                                @Html.TextBox("ItemCostPrice", null, new {@class = "form-control"})
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+                <div class="col-md-4 col-md-offset-6">
+                    <input type="submit" value="Add" id="AddButton" class="btn btn-success"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="panel-group">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title"> Item Added Details</div>
+
+            </div>
+            <div class="panel-body">
+                
+                <table class="table-bordered table-hover table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <td>SL</td>
+                        <td>Item Name</td>
+                        <td>Quantity</td>
+                        <td>Price</td>
+                        <td>Toal price</td>
+
+                    </tr>
+                    </thead>
+                    
+                    <tbody id="PurchaseDetailsTable">
+                    @*@if (Model != null && Model.PurchaseDetailses != null && Model.PurchaseDetailses.Count > 0)
+                    {
+                        var sl = 0;
+                        foreach (var item in Model.PurchaseDetailses)
+                        {
+                            <tr>
+                                <td>@(++sl)</td>
+                                <td>@item.Name</td>
+                                <td>@item.Qty</td>
+                                <td>@item.price</td>
+                                <td>@item.totalPrice</td>
+                            </tr>
+
+
+
+                        }
+                    }*@
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4 col-md-offset-6">
+        <input type="submit" value="Save" class="btn btn-success"/>
+    </div>
+}

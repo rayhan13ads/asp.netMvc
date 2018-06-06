@@ -28,7 +28,7 @@ namespace BITMPosSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Organisetion organisetion = db.Organisetions.Find(id);
+            Organization organisetion = db.Organisetions.Find(id);
             if (organisetion == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace BITMPosSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,OrganisetionName,OrganisetionCode,ContactNumber,Address,Image")] Organisetion organisetion)
+        public ActionResult Create([Bind(Include = "Id,OrganisetionName,OrganisetionCode,ContactNumber,Address,Image")] Organization organisetion)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace BITMPosSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Organisetion organisetion = db.Organisetions.Find(id);
+            Organization organisetion = db.Organisetions.Find(id);
             if (organisetion == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace BITMPosSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,OrganisetionName,OrganisetionCode,ContactNumber,Address,Image")] Organisetion organisetion)
+        public ActionResult Edit([Bind(Include = "Id,OrganisetionName,OrganisetionCode,ContactNumber,Address,Image")] Organization organisetion)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace BITMPosSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Organisetion organisetion = db.Organisetions.Find(id);
+            Organization organisetion = db.Organisetions.Find(id);
             if (organisetion == null)
             {
                 return HttpNotFound();
@@ -110,7 +110,7 @@ namespace BITMPosSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Organisetion organisetion = db.Organisetions.Find(id);
+            Organization organisetion = db.Organisetions.Find(id);
             db.Organisetions.Remove(organisetion);
             db.SaveChanges();
             return RedirectToAction("Index");

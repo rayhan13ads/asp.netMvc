@@ -11,13 +11,13 @@ namespace BitmPosSystem.BLL
     public class OrganizationManager
     {
         OrganizationRepository _organizationRepository = new OrganizationRepository();
-        public List<Organisetion> GetAll()
+        public List<Organization> GetAll()
         {
             return _organizationRepository.GetAll();
         }
 
         //Add Data
-        public bool Add(Organisetion objOrganisetion)
+        public bool Add(Organization objOrganisetion)
         {
             var isAdded = false;
             isAdded = _organizationRepository.Add(objOrganisetion);
@@ -30,7 +30,7 @@ namespace BitmPosSystem.BLL
 
         //Update Data
 
-        public bool Update(Organisetion objOrganisetion)
+        public bool Update(Organization objOrganisetion)
         {
             var isUpdate = false;
             isUpdate = _organizationRepository.Update(objOrganisetion);
@@ -56,21 +56,21 @@ namespace BitmPosSystem.BLL
 
         //get id
 
-        public Organisetion GetById(int id)
+        public Organization GetById(int id)
         {
             return _organizationRepository.GetById(id);
         }
 
         //Search By Code
 
-        public List<Organisetion> GetSearchCode(Organisetion objOrganisetion)
+        public List<Organization> GetSearchCode(Organization objOrganisetion)
         {
             return _organizationRepository.GetSearchCode(objOrganisetion);
         }
 
         //Search by Name
 
-        public List<Organisetion> GetSearchName(Organisetion objOrganisetion)
+        public List<Organization> GetSearchName(Organization objOrganisetion)
         {
             return _organizationRepository.GetSearchName(objOrganisetion);
         }
