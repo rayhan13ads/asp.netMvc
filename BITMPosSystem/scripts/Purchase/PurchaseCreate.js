@@ -25,13 +25,15 @@ function createRowForPurchase() {
 
     var itemTd = "<td> <input type='hidden' id='ItemName" + index + "'  name='PurchaseDetailses[" + index + "].Name' value='" + selectedItem.Name + "' /> " + selectedItem.Name + " </td>";
     var qtyTd = "<td> <input type='hidden' id='ItemQty" + index + "'  name='PurchaseDetailses[" + index + "].Qty' value='" + selectedItem.Qty + "' /> " + selectedItem.Qty + " </td>";
+    var costPriceTd = "<td> <input type='hidden' id='ItemCostPrice" + index + "'  name='PurchaseDetailses[" + index + "].Qty' value='" + selectedItem.Cost + "' /> " + selectedItem.Cost + " </td>";
 
 
-    var newRow = "<tr>" + indexTd + slTd + itemTd + qtyTd + " </tr>";
+    var newRow = "<tr>" + indexTd + slTd + itemTd + qtyTd +costPriceTd+ " </tr>";
 
     $("#PurchaseDetailsTable").append(newRow);
     $("#ItemName").val("");
     $("#ItemQty").val("");
+    $("#ItemCostPrice").val("");
 
 }
 
@@ -39,6 +41,8 @@ function createRowForPurchase() {
 function getSelectedItem() {
     var name = $("#ItemName").val();
     var qty = $("#ItemQty").val();
+    var cost = $("#ItemCostPrice").val();
+
 
 
     if (qty == "") {
@@ -47,7 +51,8 @@ function getSelectedItem() {
 
     var item = {
         "Name": name,
-        "Qty": qty
+        "Qty": qty,
+        "Cost":cost
     }
 
     return item;

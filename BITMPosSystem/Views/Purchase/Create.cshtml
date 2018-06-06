@@ -47,12 +47,13 @@
                 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group row">
-                            @Html.LabelFor(m => m.PurchasseDate, "Purchase Date", new {@class = "control-label col-md-4"})
-                            <div class="col-md-4">
-                                @Html.TextBoxFor(m => m.PurchaseDue, null, new {@class = "form-control"})
+                        @*<div class="form-group row">
+                            @Html.LabelFor(model => model.PurchasseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PurchasseDate, new { htmlAttributes = new { @Value = Model.PurchasseDate.ToString("MM/dd/yyyy"), @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PurchasseDate, "", new { @class = "text-danger" })
                             </div>
-                        </div>
+                        </div>*@
 
 
                         <div class="form-group row">
@@ -153,29 +154,29 @@
                         <td>Item Name</td>
                         <td>Quantity</td>
                         <td>Price</td>
-                        <td>Toal price</td>
+                        @*<td>Toal price</td>*@
 
                     </tr>
                     </thead>
                     
                     <tbody id="PurchaseDetailsTable">
-                    @*@if (Model != null && Model.PurchaseDetailses != null && Model.PurchaseDetailses.Count > 0)
+                    @if (Model != null && Model.PurchaseDetailses != null && Model.PurchaseDetailses.Count > 0)
                     {
                         var sl = 0;
                         foreach (var item in Model.PurchaseDetailses)
                         {
                             <tr>
                                 <td>@(++sl)</td>
-                                <td>@item.Name</td>
+                                <td>@item.Item</td>
                                 <td>@item.Qty</td>
-                                <td>@item.price</td>
-                                <td>@item.totalPrice</td>
+                                <td>@item.CostPrice</td>
+                                @*<td>@item.totalPrice</td>*@
                             </tr>
 
 
 
                         }
-                    }*@
+                    }
 
                     </tbody>
                 </table>
