@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace BitmPosSystem.Models
+using System.Web.Mvc;
+using BitmPosSystem.Models;
+namespace BitmPosSystem.Models.ViewModels
 {
-    public class Purchase
+    class PurchaseVM
     {
-        [Key]
         public int Id { get; set; }
         public double TotalAmount { get; set; }
         public double PurchaseDue { get; set; }
@@ -21,15 +19,18 @@ namespace BitmPosSystem.Models
         public int BranchId { get; set; }
         public int SupplierId { get; set; }
         public virtual ICollection<PurchaseDetails> PurchaseDetailses { get; set; }
-        [ForeignKey("BranchId")]
-        
-        public Branch Branch { get; set; }
-        [ForeignKey("SupplierId")]
-        public Supplier Supplier { get; set; }
-
-        [ForeignKey("OrganisetioId")]
-        public Organisetion Organisetion { get; set; }
-        public List<Income> Incomes { get; set; }
       
+
+        public Branch Branch { get; set; }
+     
+        public Supplier Supplier { get; set; }
+        public ICollection<Organisetion> Organisetions { get; set; }
+        public ICollection<Supplier> Suppliers { get; set; }
+        public ICollection<Branch> Branches { get; set; }
+        public List<SelectListItem>  ItemsDrop { get; set; }
+        public List<SelectListItem>  OrganizetionDrop { get; set; }
+        public List<SelectListItem> BranchDrop { get; set; }
+        public List<SelectListItem> SuplierDrop { get; set; }
+
     }
 }

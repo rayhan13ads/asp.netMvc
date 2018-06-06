@@ -38,14 +38,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+       
         <div class="form-group">
             @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -69,6 +62,39 @@
                 @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })*@
+                <div class="col-md-8">
+                    <div class="panel panel-body" style="min-height:256px">
+
+                        <div class="col-md-9">
+
+                            <div class="col-md-4">
+                                <div class="btn btn-primary">
+                                    <input type="file" name="imageBrowes" id="imageBrowes" onchange="fileCheck(file)" />
+                                    @Html.ValidationMessageFor(m => m.Image)
+                                </div>
+                                <hr />
+
+                                <div id="imgPreview" class="thumbnail" style="display:none">
+                                    <img class="img-responsive" id="targetImg" height="200" width="200" />
+                                    <div class="caption">
+                                        <a href="#" onclick="ClearPreview()"><i class="oi oi-trash"></i></a>
+                                        <span id="description"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -81,3 +107,83 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+<script src="~/scripts/jquery-3.0.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+
+        $("#imageBrowes").change(function () {
+
+            var File = this.files;
+
+            if (File && File[0]) {
+                ReadImage(File[0]);
+            }
+
+        })
+
+
+    })
+
+
+    var ReadImage = function (file) {
+
+        var reader = new FileReader;
+        var image = new Image;
+
+        reader.readAsDataURL(file);
+        reader.onload = function (_file) {
+
+            image.src = _file.target.result;
+            image.onload = function () {
+
+                var height = this.height;
+                var width = this.width;
+                var type = file.type;
+                var size = ~~(file.size / 1024) + "KB";
+
+                $("#targetImg").attr('src', _file.target.result);
+                $("#description").text("Size:" + size + ", " + height + "X " + width + ", " + type + "");
+                $("#imgPreview").show();
+
+            }
+
+        }
+
+    }
+
+    var ClearPreview = function () {
+        $("#imageBrowes").val('');
+        $("#description").text('');
+        $("#imgPreview").hide();
+
+    }
+    function fileCheck(obj) {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'gif', 'bmp'];
+        if ($.inArray($(obj).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only '.jpeg','.jpg', '.png', '.gif', '.bmp' formats are allowed.");
+        }
+    }
+    $(function () {
+        $("#ChildChecked").click(function () {
+            if ($(this).is(':checked')) {
+                $("#RootCategoryId").show();
+            }
+            //else {
+            //    $("#RootCategoryId").hide();
+            //}
+        });
+    });
+    $(function () {
+        $("#RootChecked").click(function () {
+            if ($(this).is(':checked')) {
+                $("#RootCategoryId").hide();
+            }
+            //else {
+            //    $("#RootCategoryId").hide();
+            //}
+        });
+    });
+</script>

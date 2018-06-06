@@ -7,29 +7,31 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BitmPosSystem.Models;
+using BitmPosSystem.BLL;
 using BitmPosSystem.Models.Context;
 
 namespace BITMPosSystem.Controllers
 {
     public class ItemsController : Controller
     {
-        private PosSystemContext db = new PosSystemContext();
-
+        ItemManager _manager = new ItemManager();
+        CategoryManager  _categoryManager = new CategoryManager();
         // GET: Items
         public ActionResult Index()
         {
-            var items = db.Items.Include(i => i.Category);
-            return View(items.ToList());
+            var items = _manager.GetAll();
+            return View(items);
         }
 
         // GET: Items/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+
+            Item item = _manager.GetById(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -40,7 +42,7 @@ namespace BITMPosSystem.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.CategoryId = new SelectList(_categoryManager.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -53,28 +55,29 @@ namespace BITMPosSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Items.Add(item);
-                db.SaveChanges();
+                HttpPostedFileBase file = Request.Files["imageBrowes"];
+                _manager.Add(item, file);
+               
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", item.CategoryId);
+            ViewBag.CategoryId = new SelectList(_categoryManager.GetAll(), "Id", "Name", item.CategoryId);
             return View(item);
         }
 
         // GET: Items/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            Item item = _manager.GetById(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", item.CategoryId);
+            ViewBag.CategoryId = new SelectList(_categoryManager.GetAll(), "Id", "Name", item.CategoryId);
             return View(item);
         }
 
@@ -87,22 +90,23 @@ namespace BITMPosSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
+                HttpPostedFileBase file = Request.Files["imageBrowes"];
+                _manager.Update(item ,file);
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", item.CategoryId);
+            ViewBag.CategoryId = new SelectList(_categoryManager.GetAll(), "Id", "Name", item.CategoryId);
             return View(item);
         }
 
         // GET: Items/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+
+            Item item = _manager.GetById(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -115,9 +119,7 @@ namespace BITMPosSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items.Find(id);
-            db.Items.Remove(item);
-            db.SaveChanges();
+            _manager.Delete(id);
             return RedirectToAction("Index");
         }
 
@@ -125,7 +127,7 @@ namespace BITMPosSystem.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _manager.Dispose(disposing);
             }
             base.Dispose(disposing);
         }

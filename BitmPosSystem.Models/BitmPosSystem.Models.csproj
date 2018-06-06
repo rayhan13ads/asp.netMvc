@@ -102,6 +102,14 @@
     <Compile Include="Migrations\201806030444073_modify categorymodel.Designer.cs">
       <DependentUpon>201806030444073_modify categorymodel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806061611392_Update_purchaseModel_add_organisetion.cs" />
+    <Compile Include="Migrations\201806061611392_Update_purchaseModel_add_organisetion.Designer.cs">
+      <DependentUpon>201806061611392_Update_purchaseModel_add_organisetion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806061614591_Update_orgainsetionModel_add_organisetion.cs" />
+    <Compile Include="Migrations\201806061614591_Update_orgainsetionModel_add_organisetion.Designer.cs">
+      <DependentUpon>201806061614591_Update_orgainsetionModel_add_organisetion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Organisetion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,6 +119,7 @@
     <Compile Include="SalesDetails.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="ViewModels\ItemsVM.cs" />
+    <Compile Include="ViewModels\PurchaseVM.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -126,6 +135,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806030444073_modify categorymodel.resx">
       <DependentUpon>201806030444073_modify categorymodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061611392_Update_purchaseModel_add_organisetion.resx">
+      <DependentUpon>201806061611392_Update_purchaseModel_add_organisetion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061614591_Update_orgainsetionModel_add_organisetion.resx">
+      <DependentUpon>201806061614591_Update_orgainsetionModel_add_organisetion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using BitmPosSystem.DAL;
 using BitmPosSystem.Models;
 
@@ -17,10 +18,10 @@ namespace BitmPosSystem.BLL
         }
 
         //Add Data
-        public bool Add(Item objItem)
+        public bool Add(Item objItem, HttpPostedFileBase  file)
         {
             var isAdded = false;
-            isAdded = _itemRepository.Add(objItem);
+            isAdded = _itemRepository.Add(objItem, file);
             if (isAdded)
             {
                 return true;
@@ -30,10 +31,10 @@ namespace BitmPosSystem.BLL
 
         //Update Data
 
-        public bool Update(Item objItem)
+        public bool Update(Item objItem, HttpPostedFileBase  file)
         {
             var isUpdate = false;
-            isUpdate = _itemRepository.Update(objItem);
+            isUpdate = _itemRepository.Update(objItem , file);
             if (isUpdate)
             {
                 return true;
@@ -74,6 +75,13 @@ namespace BitmPosSystem.BLL
         {
             return _itemRepository.GetSearchName(objItem);
         }
-
+        public bool Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _itemRepository.Dispose(disposing);
+            }
+            return Dispose(disposing);
+        }
     }
 }

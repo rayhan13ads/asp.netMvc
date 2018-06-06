@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Net;
+using System.Web;
 using System.Threading.Tasks;
 using BitmPosSystem.Models;
 using BitmPosSystem.Models.Context;
@@ -21,9 +24,10 @@ namespace BitmPosSystem.DAL
         }
 
         //Add Data
-        public bool Add(Item objItem)
+        public bool Add(Item objItem , HttpPostedFileBase file)
         {
             var isAdded = false;
+            objItem.Image = ConvertToBytes(file);
             _Db.Items.Add(objItem);
             isAdded = _Db.SaveChanges() > 0;
             if (isAdded)
@@ -36,8 +40,9 @@ namespace BitmPosSystem.DAL
 
         //Update Data 
 
-        public bool Update(Item objItem)
+        public bool Update(Item objItem, HttpPostedFileBase file)
         {
+            objItem.Image = ConvertToBytes(file);
             _Db.Items.Attach(objItem);
             _Db.Entry(objItem).State = EntityState.Modified;
             var isUpdate = _Db.SaveChanges() > 0;
@@ -52,7 +57,7 @@ namespace BitmPosSystem.DAL
         public bool Delete(int Id)
         {
             var isDelete = false;
-            var removeData = _Db.Items.SingleOrDefault(c => c.Id == Id);
+            var removeData = _Db.Items.Find(Id);
             if (removeData != null)
             {
                 _Db.Items.Remove(removeData);
@@ -64,7 +69,14 @@ namespace BitmPosSystem.DAL
             }
             return isDelete;
         }
-
+        public bool Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _Db.Dispose();
+            }
+            return Dispose(disposing);
+        }
         //GetById 
 
         public Item GetById(int id)
@@ -83,6 +95,13 @@ namespace BitmPosSystem.DAL
         {
             return _Db.Items.Where(c => c.ItemName.Contains(objItem.ItemName)).ToList();
 
+        }
+        public byte[] ConvertToBytes(HttpPostedFileBase image)
+        {
+            byte[] imageBytes = null;
+            BinaryReader reader = new BinaryReader(image.InputStream);
+            imageBytes = reader.ReadBytes((int)image.ContentLength);
+            return imageBytes;
         }
     }
 }

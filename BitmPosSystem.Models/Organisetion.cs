@@ -16,5 +16,6 @@ namespace BitmPosSystem.Models
         public string Address { get; set; }
         public byte[] Image { get; set; }
         public List<Branch> Branches { get; set; }
+        public List<Purchase> Purchases { get; set; }
     }
 }
